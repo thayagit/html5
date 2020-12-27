@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="UTF-8">
+<title>HTML5 フォームサンプル</title> 
+</head> 
+
+  <link rel="stylesheet" href="sample.css">
+
+  <script>
+  function check(input) {
+    if (input.value != document.getElementById('email_addr').value) {
+      input.setCustomValidity('メールアドレスと確認用メールアドレスの入力値が一致していません');
+    } else {
+      // 正常入力 -- エラーメッセージをリセットする
+      input.setCustomValidity('');
+    }
+  }
+  </script>
+
+<body>
+  
+  <form oninput="total.value = (nights.valueAsNumber * 9900) + ((guests.valueAsNumber - 1) * 1000)">
+    <label>氏名:</label>
+    <input type="text" id="full_name" name="full_name" placeholder="山田　太郎" required>
+
+    <label>メール アドレス:</label>
+    <input type="email" id="email_addr" name="email_addr" required>
+
+    <label>メール アドレス（確認用）:</label>
+    <input type="email" id="email_addr_repeat" name="email_addr_repeat" required oninput="check(this)">
+
+    <label>到着日:</label>
+    <input type="date" id="arrival_dt" name="arrival_dt" required>
+    
+    <label>宿泊日数（1 泊あたりの室料 9,900円）:</label>
+    <input type="number" id="nights" name="nights" value="1" min="1" max="30" required>
+
+    <label>宿泊人数（1 名追加ごとに 1 泊あたり 1,000円 追加）:</label>
+    <input type="number" id="guests" name="guests" value="1" min="1" max="4"  required>
+
+    <label>お見積もり合計:</label>
+    <b>(税込)<output id="total" name="total">9,900</output>円</b>
+    <br><br>
+
+    <label>クーポン コード</label>
+    <input type="text" id="promo" name="promo" pattern="[A-Za-z0-9]{6}" title="クーポン コードには6桁の英数字を入力してください">
+
+    <input type="submit" value="予約する"  /> 
+  </form>
+
+</body> 
+</html>
